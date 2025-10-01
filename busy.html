@@ -9,37 +9,46 @@
     body { max-width: 900px; margin: 0 auto; font-size: 18px; line-height: 1.6; font-family: Arial, sans-serif; }
     main { max-width: 700px; margin: 90px auto 120px; position: relative; }
     h2 { margin-top: 0; }
+    /* Sticky top ticker */
     #ticker { position: fixed; top: 0; left: 0; right: 0; background: #111; color: #fff; padding: 8px 0; z-index: 9999; }
     #ticker .marquee { white-space: nowrap; overflow: hidden; }
     #ticker .marquee span { display: inline-block; padding-left: 100%; animation: scroll 25s linear infinite; }
     @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+    /* Sticky bottom CTA */
     #sticky-bottom { position: fixed; bottom: 0; left: 0; right: 0; background: #fff4cc; border-top: 2px solid #f0c000; padding: 10px; z-index: 9998; text-align: center; }
     #sticky-bottom button { background: var(--accent); color: #fff; border: none; padding: 8px 14px; margin-left: 10px; cursor: pointer; border-radius: 6px; }
+    /* Sidebar */
     #sidebar { position: fixed; right: 10px; top: 90px; width: 240px; border-left: 1px solid #ddd; padding-left: 12px; }
     #sidebar h4 { margin: 10px 0 6px; }
     .ad { border: 2px dashed var(--accent); padding: 8px; margin: 10px 0; background: #ffe3ef; font-weight: bold; text-align: center; }
     .blinky { animation: blink 1s step-start infinite; }
     @keyframes blink { 50% { opacity: 0.25; } }
+    /* Floating chat bubble */
     #chat { position: fixed; bottom: 80px; right: 20px; background: #fff; border: 1px solid #ddd; border-radius: 12px; padding: 10px 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.15); z-index: 9997; }
     #chat .dot { width: 8px; height: 8px; background: #4caf50; border-radius: 50%; display: inline-block; margin-right: 6px; animation: pulse 1.2s ease-in-out infinite; }
     @keyframes pulse { 50% { transform: scale(1.4); } }
+    /* Popups/modals */
     .modal { position: fixed; inset: 0; display: none; background: rgba(0,0,0,0.6); align-items: center; justify-content: center; z-index: 10000; }
     .modal .box { background: white; padding: 20px; border-radius: 10px; max-width: 420px; text-align: center; }
     .btn { background: var(--accent); color: #fff; border: none; padding: 8px 14px; cursor: pointer; border-radius: 6px; }
     .linky { color: #0077cc; text-decoration: underline; cursor: pointer; }
+    /* Tooltip on hover keywords */
     .hint { position: relative; border-bottom: 1px dotted #555; cursor: help; }
     .hint .tip { position: absolute; display: none; background: #222; color: #fff; padding: 6px 8px; border-radius: 6px; font-size: 14px; top: 1.7em; left: 0; white-space: nowrap; z-index: 9999; }
     .hint:hover .tip { display: block; }
+    /* Inline "recommended" cards inside text */
     .card { border: 1px solid #ddd; padding: 10px; margin: 12px 0; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
   </style>
 </head>
 <body>
+  <!-- Ticker -->
   <div id="ticker">
     <div class="marquee">
       <span>🔥 BREAKING: Limited-time offer on history ebooks! • 📣 New quiz: "Are you smarter than a 15th-century scribe?" • 🛎️ Enable notifications to never miss a pop-up again! • 🔔 Subscribe now for bonus facts! • </span>
     </div>
   </div>
 
+  <!-- Sidebar / Ads / Links -->
   <div id="sidebar">
     <h4>Related Links</h4>
     <ul>
@@ -52,11 +61,13 @@
     <div class="ad blinky">📰 Subscribe to PrintPress Daily</div>
   </div>
 
+  <!-- Sticky bottom CTA -->
   <div id="sticky-bottom">
     🍪 We use cookies for "enhanced learning." <button onclick="this.parentElement.remove()">Accept</button>
     <button onclick="alert('Preferences saved!')">Manage</button>
   </div>
 
+  <!-- Floating chat -->
   <div id="chat"><span class="dot"></span>Need help? Chat now! <button class="btn" onclick="alert('Agent will join shortly...')">Start</button></div>
 
   <main>
@@ -70,15 +81,18 @@
 
     <div class="card">Ad: Compare the <a href="#" onclick="alert('Moveable vs. woodblock printing...');return false;">Top 5 Printing Methods</a> in 2 minutes!</div>
 
-    <p>The <a class="linky" href="https://www.gutenberg-bible.com" target="_blank">Gutenberg Bible</a>, completed around 1455, was among the first major books printed using this technology. It demonstrated the power of the press to reproduce long works with uniform quality. Estimates suggest about <span class="hint">180 copies<span class="tip">Some on vellum</span></span> were produced, far more than could have been copied by hand in the same time frame.</p>
+    <p>The <a class="linky" href="https://www.gutenberg-bible.com" target="_blank">Gutenberg Bible</a>, completed around <span class="hint">1455<span class="tip">Approximate</span></span>, was among the first major books printed using this technology. It demonstrated the power of the press to reproduce long works with uniform quality. Estimates suggest about <span class="hint">180 copies<span class="tip">Some on vellum</span></span> were produced, far more than could have been copied by hand in the same time frame.</p>
 
     <p>The effects of the printing press rippled across Europe. Literacy rates rose as books became more affordable. Scholars could exchange ideas more easily, accelerating the Renaissance. Religious reformers such as <span class="hint">Martin Luther<span class="tip">95 Theses, 1517</span></span> used the press to spread pamphlets and vernacular Bibles, fueling the Protestant Reformation. Political ideas also circulated more widely, eventually supporting movements like the Enlightenment and modern democracy.</p>
 
-    <p>By 1500, printing presses had spread to more than <span class="hint">200 cities<span class="tip">Across Europe</span></span>, producing millions of books. The press became a cornerstone of modern knowledge economies, laying the foundation for newspapers, scientific journals, and mass education.</p>
+    <p>By <span class="hint">1500<span class="tip">Turn of the century</span></span>, printing presses had spread to more than <span class="hint">200 cities<span class="tip">Across Europe</span></span>, producing millions of books. The press became a cornerstone of modern knowledge economies, laying the foundation for newspapers, scientific journals, and mass education. Among the first printed materials were not only religious texts but also <span class="hint">maps<span class="tip">Exploration</span></span> and <span class="hint">scientific diagrams<span class="tip">Early STEM</span></span>, which made exploration and science more accessible.</p>
+
+    <p>The first printed newspapers appeared in the <span class="hint">early 1600s<span class="tip">Seventeenth century</span></span>, further transforming how information spread. The printing press also helped <span class="hint">standardize spelling and grammar<span class="tip">Toward national languages</span></span>, since printed books reached wider audiences than handwritten manuscripts. This shift supported the development of national languages.</p>
 
     <p>Gutenberg’s invention is often ranked alongside the wheel, electricity, and the internet as one of the most transformative technologies in history. It reshaped not only how information was shared, but also how people thought about authority, religion, science, and government.</p>
   </main>
 
+  <!-- Timed popups / notifications / countdown modal -->
   <div class="modal" id="newsletterModal">
     <div class="box">
       <h3>Subscribe for Weekly History Nuggets!</h3>
@@ -104,6 +118,7 @@
   </div>
 
   <script>
+    // Newsletter modal with countdown (blocks closing for 5s)
     setTimeout(function(){
       const modal = document.getElementById('newsletterModal');
       const closeBtn = document.getElementById('closeNewsletter');
@@ -117,19 +132,23 @@
       closeBtn.addEventListener('click', ()=> modal.style.display='none');
     }, 5000);
 
+    // Offer modal after 12s
     setTimeout(function(){
       document.getElementById('offerModal').style.display = 'flex';
     }, 12000);
 
+    // Recurring reminder every 18s
     setInterval(function(){
       document.getElementById('reminderModal').style.display = 'flex';
       setTimeout(function(){ document.getElementById('reminderModal').style.display = 'none'; }, 5000);
     }, 18000);
 
+    // Random "attention nudge" that scrolls sidebar into view
     setInterval(function(){
       document.getElementById('sidebar').scrollIntoView({behavior:'smooth', block:'center'});
     }, 16000);
 
+    // Flash the title occasionally
     setInterval(function(){
       document.title = (document.title.indexOf('🔔') === -1) ? '🔔 ' + document.title : document.title.replace('🔔 ', '');
     }, 4000);
