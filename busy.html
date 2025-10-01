@@ -1,48 +1,138 @@
+
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
-  <title>The Printing Press — Distracting Version</title>
+  <title>The Printing Press — Distracting Version (Obnoxious)</title>
   <style>
-    body { max-width: 700px; margin: 40px auto; font-size: 18px; line-height: 1.6; }
-    #sidebar { float: right; width: 200px; margin-left: 20px; border-left: 1px solid #ccc; padding-left: 10px; }
-    .ad-banner { width: 100%; background: orange; text-align: center; padding: 10px; margin: 10px 0; font-weight: bold; }
-    .popup { position: fixed; bottom: 20px; right: 20px; background: yellow; padding: 10px; border: 1px solid #888; display: none; }
+    :root { --accent: #ff006e; --yellow: #ffea00; }
+    body { max-width: 900px; margin: 0 auto; font-size: 18px; line-height: 1.6; font-family: Arial, sans-serif; }
+    main { max-width: 700px; margin: 90px auto 120px; position: relative; }
+    h2 { margin-top: 0; }
+    #ticker { position: fixed; top: 0; left: 0; right: 0; background: #111; color: #fff; padding: 8px 0; z-index: 9999; }
+    #ticker .marquee { white-space: nowrap; overflow: hidden; }
+    #ticker .marquee span { display: inline-block; padding-left: 100%; animation: scroll 25s linear infinite; }
+    @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+    #sticky-bottom { position: fixed; bottom: 0; left: 0; right: 0; background: #fff4cc; border-top: 2px solid #f0c000; padding: 10px; z-index: 9998; text-align: center; }
+    #sticky-bottom button { background: var(--accent); color: #fff; border: none; padding: 8px 14px; margin-left: 10px; cursor: pointer; border-radius: 6px; }
+    #sidebar { position: fixed; right: 10px; top: 90px; width: 240px; border-left: 1px solid #ddd; padding-left: 12px; }
+    #sidebar h4 { margin: 10px 0 6px; }
+    .ad { border: 2px dashed var(--accent); padding: 8px; margin: 10px 0; background: #ffe3ef; font-weight: bold; text-align: center; }
+    .blinky { animation: blink 1s step-start infinite; }
+    @keyframes blink { 50% { opacity: 0.25; } }
+    #chat { position: fixed; bottom: 80px; right: 20px; background: #fff; border: 1px solid #ddd; border-radius: 12px; padding: 10px 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.15); z-index: 9997; }
+    #chat .dot { width: 8px; height: 8px; background: #4caf50; border-radius: 50%; display: inline-block; margin-right: 6px; animation: pulse 1.2s ease-in-out infinite; }
+    @keyframes pulse { 50% { transform: scale(1.4); } }
+    .modal { position: fixed; inset: 0; display: none; background: rgba(0,0,0,0.6); align-items: center; justify-content: center; z-index: 10000; }
+    .modal .box { background: white; padding: 20px; border-radius: 10px; max-width: 420px; text-align: center; }
+    .btn { background: var(--accent); color: #fff; border: none; padding: 8px 14px; cursor: pointer; border-radius: 6px; }
+    .linky { color: #0077cc; text-decoration: underline; cursor: pointer; }
+    .hint { position: relative; border-bottom: 1px dotted #555; cursor: help; }
+    .hint .tip { position: absolute; display: none; background: #222; color: #fff; padding: 6px 8px; border-radius: 6px; font-size: 14px; top: 1.7em; left: 0; white-space: nowrap; z-index: 9999; }
+    .hint:hover .tip { display: block; }
+    .card { border: 1px solid #ddd; padding: 10px; margin: 12px 0; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
   </style>
 </head>
 <body>
-  <div class="ad-banner">📚 Buy the “Complete History of Printing” eBook — Only $4.99!</div>
+  <div id="ticker">
+    <div class="marquee">
+      <span>🔥 BREAKING: Limited-time offer on history ebooks! • 📣 New quiz: "Are you smarter than a 15th-century scribe?" • 🛎️ Enable notifications to never miss a pop-up again! • 🔔 Subscribe now for bonus facts! • </span>
+    </div>
+  </div>
 
   <div id="sidebar">
     <h4>Related Links</h4>
     <ul>
-      <li><a href="https://en.wikipedia.org/wiki/Printing_press">Wikipedia: Printing Press</a></li>
-      <li><a href="#">Top 10 Inventions that Changed the World</a></li>
-      <li><a href="#">Quiz: Are You a History Genius?</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Printing_press" target="_blank">Wikipedia: Printing Press</a></li>
+      <li><a href="#" onclick="alert('Top 10 Inventions opening...'); return false;">Top 10 Inventions</a></li>
+      <li><a href="#" onclick="alert('History Quiz loading...'); return false;">History Quiz</a></li>
     </ul>
-    <h4>Sponsored</h4>
-    <p>Learn German in 30 Days! <a href="#">Click here</a>.</p>
+    <div class="ad blinky">📚 75% OFF — "Master European History" Course</div>
+    <div class="ad">⚡ New! AI Study Buddy — Try Free</div>
+    <div class="ad blinky">📰 Subscribe to PrintPress Daily</div>
   </div>
 
-  <h2>The Invention of the Printing Press</h2>
-  <p>In the mid-15th century, <a href="https://en.wikipedia.org/wiki/Johannes_Gutenberg">Johannes Gutenberg</a> of Mainz, Germany, transformed human communication with the invention of the movable type printing press. Prior to Gutenberg, books in Europe were copied by hand, often by monks in monasteries. This process was slow, expensive, and limited literacy to a tiny elite.</p>
+  <div id="sticky-bottom">
+    🍪 We use cookies for "enhanced learning." <button onclick="this.parentElement.remove()">Accept</button>
+    <button onclick="alert('Preferences saved!')">Manage</button>
+  </div>
 
-  <p>Gutenberg’s key innovation was the development of individual metal letters that could be arranged, inked, and pressed onto paper. Once a page was printed, the type could be rearranged to print new pages. This reduced the cost of producing books dramatically and increased the speed at which information could be spread.</p>
+  <div id="chat"><span class="dot"></span>Need help? Chat now! <button class="btn" onclick="alert('Agent will join shortly...')">Start</button></div>
 
-  <p>The <a href="https://www.gutenberg-bible.com">Gutenberg Bible</a>, completed around 1455, was among the first major books printed using this technology. It demonstrated the power of the press to reproduce long works with uniform quality. Estimates suggest about 180 copies were produced, far more than could have been copied by hand in the same time frame.</p>
+  <main>
+    <h2>The Invention of the Printing Press</h2>
 
-  <p>The effects of the printing press rippled across Europe. Literacy rates rose as books became more affordable. Scholars could exchange ideas more easily, accelerating the Renaissance. Religious reformers such as Martin Luther used the press to spread pamphlets and vernacular Bibles, fueling the Protestant Reformation. Political ideas also circulated more widely, eventually supporting movements like the Enlightenment and modern democracy.</p>
+    <p>In the <span class="hint">mid-15th century<span class="tip">~1450s</span></span>, <a class="linky" href="https://en.wikipedia.org/wiki/Johannes_Gutenberg" target="_blank">Johannes Gutenberg</a> of Mainz, Germany, transformed human communication with the invention of the movable type printing press. Prior to Gutenberg, books in Europe were copied by hand, often by monks in monasteries. This process was slow, expensive, and limited literacy to a tiny elite.</p>
 
-  <p>By 1500, printing presses had spread to more than 200 cities across Europe, producing millions of books. The press became a cornerstone of modern knowledge economies, laying the foundation for newspapers, scientific journals, and mass education.</p>
+    <div class="card">You might also like: <a href="#" onclick="alert('Opening: Illuminated Manuscripts...');return false;">Illuminated Manuscripts</a> • <a href="#" onclick="alert('Opening: Scriptorium Life...');return false;">Inside a Scriptorium</a></div>
 
-  <p>Gutenberg’s invention is often ranked alongside the wheel, electricity, and the internet as one of the most transformative technologies in history. It reshaped not only how information was shared, but also how people thought about authority, religion, science, and government.</p>
+    <p>Gutenberg’s key innovation was the development of individual metal letters that could be arranged, inked, and pressed onto paper. Once a page was printed, the type could be rearranged to print new pages. This reduced the cost of producing books dramatically and increased the speed at which information could be spread.</p>
 
-  <div class="popup" id="popup1">⚡ Fun Fact: The Gutenberg Bible is worth millions today! <a href="#">Learn more</a></div>
+    <div class="card">Ad: Compare the <a href="#" onclick="alert('Moveable vs. woodblock printing...');return false;">Top 5 Printing Methods</a> in 2 minutes!</div>
+
+    <p>The <a class="linky" href="https://www.gutenberg-bible.com" target="_blank">Gutenberg Bible</a>, completed around 1455, was among the first major books printed using this technology. It demonstrated the power of the press to reproduce long works with uniform quality. Estimates suggest about <span class="hint">180 copies<span class="tip">Some on vellum</span></span> were produced, far more than could have been copied by hand in the same time frame.</p>
+
+    <p>The effects of the printing press rippled across Europe. Literacy rates rose as books became more affordable. Scholars could exchange ideas more easily, accelerating the Renaissance. Religious reformers such as <span class="hint">Martin Luther<span class="tip">95 Theses, 1517</span></span> used the press to spread pamphlets and vernacular Bibles, fueling the Protestant Reformation. Political ideas also circulated more widely, eventually supporting movements like the Enlightenment and modern democracy.</p>
+
+    <p>By 1500, printing presses had spread to more than <span class="hint">200 cities<span class="tip">Across Europe</span></span>, producing millions of books. The press became a cornerstone of modern knowledge economies, laying the foundation for newspapers, scientific journals, and mass education.</p>
+
+    <p>Gutenberg’s invention is often ranked alongside the wheel, electricity, and the internet as one of the most transformative technologies in history. It reshaped not only how information was shared, but also how people thought about authority, religion, science, and government.</p>
+  </main>
+
+  <div class="modal" id="newsletterModal">
+    <div class="box">
+      <h3>Subscribe for Weekly History Nuggets!</h3>
+      <p>Unlock printable timelines & mnemonics. Closing in <span id="countdown">5</span>…</p>
+      <button class="btn" id="closeNewsletter" disabled>Close</button>
+    </div>
+  </div>
+
+  <div class="modal" id="offerModal">
+    <div class="box">
+      <h3>Flash Sale: History Mega-Bundle</h3>
+      <p>Only today — claim your 90% OFF voucher!</p>
+      <button class="btn" onclick="document.getElementById('offerModal').style.display='none'">Maybe later</button>
+    </div>
+  </div>
+
+  <div class="modal" id="reminderModal">
+    <div class="box">
+      <h3>🔔 Reminder</h3>
+      <p>Enable notifications to stay updated!</p>
+      <button class="btn" onclick="document.getElementById('reminderModal').style.display='none'">Dismiss</button>
+    </div>
+  </div>
 
   <script>
     setTimeout(function(){
-      document.getElementById('popup1').style.display = 'block';
-    }, 7000);
+      const modal = document.getElementById('newsletterModal');
+      const closeBtn = document.getElementById('closeNewsletter');
+      const cd = document.getElementById('countdown');
+      modal.style.display = 'flex';
+      let n = 5;
+      const iv = setInterval(function(){
+        n -= 1; cd.textContent = n;
+        if(n<=0){ clearInterval(iv); closeBtn.disabled = false; closeBtn.textContent = 'Close'; }
+      }, 1000);
+      closeBtn.addEventListener('click', ()=> modal.style.display='none');
+    }, 5000);
+
+    setTimeout(function(){
+      document.getElementById('offerModal').style.display = 'flex';
+    }, 12000);
+
+    setInterval(function(){
+      document.getElementById('reminderModal').style.display = 'flex';
+      setTimeout(function(){ document.getElementById('reminderModal').style.display = 'none'; }, 5000);
+    }, 18000);
+
+    setInterval(function(){
+      document.getElementById('sidebar').scrollIntoView({behavior:'smooth', block:'center'});
+    }, 16000);
+
+    setInterval(function(){
+      document.title = (document.title.indexOf('🔔') === -1) ? '🔔 ' + document.title : document.title.replace('🔔 ', '');
+    }, 4000);
   </script>
 </body>
 </html>
